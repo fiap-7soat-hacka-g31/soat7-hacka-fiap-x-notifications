@@ -13,7 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AmqpConfig } from './config/amqp.config';
 import { AppConfig } from './config/app.config';
 import { MongooseConfig } from './config/mongoose.config';
-import { VideoModule } from './video/video.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
@@ -28,7 +28,7 @@ import { VideoModule } from './video/video.module';
     AmqpTacticalDesignModule,
     MongooseTransactionalModule,
     AuthModule,
-    VideoModule,
+    NotificationsModule,
   ],
 })
 export class AppModule {}

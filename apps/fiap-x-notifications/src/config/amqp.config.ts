@@ -28,6 +28,7 @@ export class AmqpConfig implements AmqpOptionsFactory {
       exchanges: [
         // ::StyleKeep::
         { name: withPrefix('events') },
+        { name: 'fiap.x.identity.events' },
         { name: 'fiap.x.api.events' },
       ],
     };
