@@ -12,6 +12,7 @@ import {
 } from '../src/notifications/application/dtos/user-signed-up.io';
 import { MongooseRecipientSchema } from '../src/notifications/infra/persistence/mongoose/recipient.schema';
 import { createTestApp } from './create-app';
+
 describe('RegisterRecipient', () => {
   let app: INestApplication;
 
