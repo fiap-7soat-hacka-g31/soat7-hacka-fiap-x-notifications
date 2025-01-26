@@ -17,6 +17,7 @@ export class MailerSendService implements MailerService {
     status: string,
     videoId: string,
     filename: string,
+    downloadSignedUrl?: string,
   ): Promise<void> {
     const params = new EmailParams()
       .setFrom(this.getSender())
@@ -24,7 +25,10 @@ export class MailerSendService implements MailerService {
       .setSubject('Video Processing Notification')
       .setHtml(this.getTemplate(status))
       .setPersonalization([
-        { email: destinationEmail, data: { customerName, videoId, filename } },
+        {
+          email: destinationEmail,
+          data: { customerName, videoId, filename, downloadSignedUrl },
+        },
       ]);
 
     await this.client.email.send(params);

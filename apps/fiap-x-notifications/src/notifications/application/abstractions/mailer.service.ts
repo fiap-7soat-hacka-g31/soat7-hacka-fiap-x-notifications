@@ -5,5 +5,6 @@ export abstract class MailerService {
     status: string,
     videoId: string,
     filename: string,
+    downloadSignedUrl?: string,
   ): Promise<void>;
 }

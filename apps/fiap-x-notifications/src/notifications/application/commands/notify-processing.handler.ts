@@ -17,7 +17,7 @@ export class NotifyProcessingHandler
   @Transactional()
   async execute(command: NotifyProcessingCommand): Promise<void> {
     const { aggregateId } = command.event;
-    const { filename, ownerId, status } = command.event.data;
+    const { filename, ownerId, status, downloadSignedUrl } = command.event.data;
     const recipient = await this.repository.findByExternalId(ownerId);
     if (!recipient) {
       throw new NotFoundException(`No recipient found for id ${ownerId}`);
@@ -28,6 +28,7 @@ export class NotifyProcessingHandler
       status,
       aggregateId,
       filename,
+      downloadSignedUrl,
     );
   }
 }

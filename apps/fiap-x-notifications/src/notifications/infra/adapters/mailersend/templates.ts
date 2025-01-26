@@ -50,6 +50,7 @@ export const SuccessMailTemplate = `
             <p>We are pleased to inform you that the processing of your video has been completed with success.</p>
             <p><strong>Video Id:</strong> {{videoId}}</p>
             <p><strong>Filename:</strong> {{filename}}</p>
+            <a href="{{downloadSignedUrl}}"><strong>Download Here</strong></a>
             <p>Thank you for choosing our service. If you have any questions or need further assistance, feel free to contact us.</p>
         </div>
         <div class="footer">
