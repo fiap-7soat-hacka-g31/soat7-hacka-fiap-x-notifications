@@ -22,7 +22,7 @@ export class MailerSendService implements MailerService {
     const params = new EmailParams()
       .setFrom(this.getSender())
       .setTo([this.getRecipient(customerName, destinationEmail)])
-      .setSubject('Video Processing Notification')
+      .setSubject(this.getSubject(status))
       .setHtml(this.getTemplate(status))
       .setPersonalization([
         {
@@ -32,6 +32,11 @@ export class MailerSendService implements MailerService {
       ]);
 
     await this.client.email.send(params);
+  }
+
+  private getSubject(status: string) {
+    const statusText = status === 'PROCESSED' ? 'Sucesso' : 'Falha';
+    return `Fiap X - Notificação de Processamento - ${statusText}`;
   }
 
   private getSender() {
