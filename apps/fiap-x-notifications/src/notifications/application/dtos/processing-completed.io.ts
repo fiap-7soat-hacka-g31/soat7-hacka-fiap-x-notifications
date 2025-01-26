@@ -1,5 +1,5 @@
 import { IntegrationEvent } from '@fiap-x/tactical-design/core';
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class ProcessingCompletedInput {
   @IsString()
@@ -10,6 +10,10 @@ export class ProcessingCompletedInput {
 
   @IsString()
   status: string;
+
+  @IsOptional()
+  @IsString()
+  downloadSignedUrl: string;
 }
 
 export class ProcessingCompleted extends IntegrationEvent<ProcessingCompletedInput> {}
