@@ -18,6 +18,7 @@ export class MailerSendService implements MailerService {
     videoId: string,
     filename: string,
     downloadSignedUrl?: string,
+    rejectionReason?: string,
   ): Promise<void> {
     const params = new EmailParams()
       .setFrom(this.getSender())
@@ -27,7 +28,13 @@ export class MailerSendService implements MailerService {
       .setPersonalization([
         {
           email: destinationEmail,
-          data: { customerName, videoId, filename, downloadSignedUrl },
+          data: {
+            customerName,
+            videoId,
+            filename,
+            downloadSignedUrl,
+            rejectionReason: this.getRejectionReason(rejectionReason),
+          },
         },
       ]);
 
@@ -50,5 +57,17 @@ export class MailerSendService implements MailerService {
 
   private getTemplate(status: string) {
     return status === 'PROCESSED' ? SuccessMailTemplate : FailureMailTemplate;
+  }
+
+  private getRejectionReason(rejectionReason: string) {
+    const knownReasons = {
+      'Video file could not be processed': 'E0001 - Não foi possível processar',
+      'Invalid file format': 'E0002 - Formato de vídeo inválido',
+      'File is too large to handle': 'E0003 - Arquivo muito grande',
+    };
+    const fallback = 'E0000 - Não foi possível processar';
+
+    const reason = knownReasons[rejectionReason] ?? fallback;
+    return reason;
   }
 }

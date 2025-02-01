@@ -14,6 +14,10 @@ export class ProcessingCompletedInput {
   @IsOptional()
   @IsString()
   downloadSignedUrl: string;
+
+  @IsOptional()
+  @IsString()
+  failReason: string;
 }
 
 export class ProcessingCompleted extends IntegrationEvent<ProcessingCompletedInput> {}
