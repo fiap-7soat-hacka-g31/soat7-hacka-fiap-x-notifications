@@ -113,6 +113,7 @@ export const FailureMailTemplate = `
             <p>Sentimos muito em informar que o processamento de seu vídeo não pode ser concluído.</p>
             <p><strong>Identificador do Vídio:</strong> {{videoId}}</p>
             <p><strong>Nome do arquivo:</strong> {{filename}}</p>
+            <p><strong>Erro:</strong> {{rejectionReason}}</p>
             <p>Obrigado por escolher os nossos serviços. Se tiver alguma dúvida ou precisar de qualquer assistência sinta-se bem vindo para nos contatar.</p>
         </div>
         <div class="footer">
